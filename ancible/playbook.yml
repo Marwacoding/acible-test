@@ -1,19 +1,54 @@
 - name : Configuration of my repo in vm
   hosts: azure-vm
   remote_user: azureuser
+  become: yes
+  become_method: sudo
+
   tasks:
+    - name: Installing git
+      apt: 
+        name: git
+        update_cache: yes
+    
+    - name: Installing pip
+      apt:
+        name: python-pip
+        update_cache: yes
+  
+    - name: Installing pip3
+      apt:
+        name: python3-pip
+        update_cache: yes
+
+    - name: Installing postgres
+      apt:
+        name: postgresql
+        update_cache: yes
+
+    - name: create directory
+      file:
+        path: ./project-app
+        state: directory
+    
+    - name: clone repo git
+      git:
+        repo: https://github.com/Marwacoding/acible-test.git
+        dest: /home/azureuser/project-app
+
     - name: added .env
       copy:
         src: /Users/marwamajbri/Desktop/simplon/ancible-test-flask/.env
-        dest: /home/azureuser/project
-    - name: copy directory to vm
-      synchronize:
-        src: /Users/marwamajbri/Desktop/simplon/ancible-test-flask/
-        dest: /home/azureuser/project
+        dest: /home/azureuser/project-app
+
+    # - name: copy directory to vm
+    #   synchronize:
+    #     src: /Users/marwamajbri/Desktop/simplon/ancible-test-flask/
+    #     dest: /home/azureuser/project
+
     - name : install python package flask
       pip:
         name: 
           - flask
           - psycopg2-binary
-          - dotenv
+          - python-dotenv
       
