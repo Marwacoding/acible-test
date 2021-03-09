@@ -5,9 +5,9 @@ load_dotenv()
 import logging
 
 #print(os.environ["pw"])
-logging.basicConfig(filename = "postgress-ancible.log", 
-                    level= logging.DEBUG, 
-                    format='%(asctime)s - %(name)s -%(levelname)s - %(message)s')
+# logging.basicConfig(filename = "postgress-ancible.log", 
+#                     level= logging.DEBUG, 
+#                     format='%(asctime)s - %(name)s -%(levelname)s - %(message)s')
 
 host = os.environ["host"]
 dbname = "my_db"
@@ -20,13 +20,13 @@ conn = psycopg2.connect(conn_string)
 cursor = conn.cursor()
 
 def create_table():
-    logging.info("[POSTGRES] Creation table : start")
+    #logging.info("[POSTGRES] Creation table : start")
 
     #cursor.execute("DROP TABLE my_table")
     cursor.execute("CREATE TABLE IF NOT EXISTS my_table (id serial PRIMARY KEY)")
     conn.commit()
 
-    logging.info("[POSTGRES] Creation table : end")
+    #logging.info("[POSTGRES] Creation table : end")
 
 create_table()
 
