@@ -2,7 +2,7 @@
   hosts: azure-vm
   remote_user: azureuser
   tasks:
-    - name: added private key
+    - name: added .env
       copy:
         src: /Users/marwamajbri/Desktop/simplon/ancible-test-flask/.env
         dest: /home/azureuser/project
@@ -10,3 +10,10 @@
       synchronize:
         src: /Users/marwamajbri/Desktop/simplon/ancible-test-flask/
         dest: /home/azureuser/project
+    - name : install python package flask
+      pip:
+        name: 
+          - flask
+          - psycopg2-binary
+          - dotenv
+      
