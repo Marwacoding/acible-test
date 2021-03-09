@@ -1,0 +1,12 @@
+- name : Configuration of my repo in vm
+  hosts: azure-vm
+  remote_user: azureuser
+  tasks:
+    - name: added private key
+      copy:
+        src: /Users/marwamajbri/Desktop/simplon/ancible-test-flask/.env
+        dest: /home/azureuser/project
+    - name: copy directory to vm
+      synchronize:
+        src: /Users/marwamajbri/Desktop/simplon/ancible-test-flask/
+        dest: /home/azureuser/project
