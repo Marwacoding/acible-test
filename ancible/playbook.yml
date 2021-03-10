@@ -5,25 +5,25 @@
   become_method: sudo
 
   tasks:
-    # - name: Installing git
-    #   apt: 
-    #     name: git
-    #     update_cache: yes
+    - name: Installing git
+      apt: 
+        name: git
+        update_cache: yes
     
-    # - name: Installing pip
-    #   apt:
-    #     name: python-pip
-    #     update_cache: yes
+    - name: Installing pip
+      apt:
+        name: python-pip
+        update_cache: yes
   
-    # - name: Installing pip3
-    #   apt:
-    #     name: python3-pip
-    #     update_cache: yes
+    - name: Installing pip3
+      apt:
+        name: python3-pip
+        update_cache: yes
 
-    # - name: Installing postgres
-    #   apt:
-    #     name: postgresql
-    #     update_cache: yes
+    - name: Installing postgres
+      apt:
+        name: postgresql
+        update_cache: yes
 
     - name: set postgres password
       become: yes
