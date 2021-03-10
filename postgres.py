@@ -13,10 +13,10 @@ conn = psycopg2.connect(
     host = os.environ["host"],
     dbname = os.environ["db"],
     user = os.environ["user"],
-    #password = os.environ["password"],
-    #sslmode = "require")
+    password = os.environ["password"],
+    sslmode = "require"
 )
-
+print(conn)
 cursor = conn.cursor()
 
 def create_table():
