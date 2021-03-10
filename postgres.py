@@ -9,14 +9,14 @@ import logging
 #                     level= logging.DEBUG, 
 #                     format='%(asctime)s - %(name)s -%(levelname)s - %(message)s')
 
-host = os.environ["host"]
-dbname = "my_db"
-user = os.environ["user"]
-password = os.environ["password"]
-sslmode = "require" 
+conn = psycopg2.connect(
+    host = os.environ["host"],
+    dbname = os.environ["db"],
+    user = os.environ["user"],
+    #password = os.environ["password"],
+    #sslmode = "require")
+)
 
-conn_string = "host={0} user={1} dbname={2} password={3} sslmode={4}".format(host, user, dbname, password, sslmode)
-conn = psycopg2.connect(conn_string)
 cursor = conn.cursor()
 
 def create_table():
