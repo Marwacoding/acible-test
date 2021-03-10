@@ -25,20 +25,29 @@
     #     name: postgresql
     #     update_cache: yes
 
-    # - name: create directory
-    #   file:
-    #     path: ./project-app
-    #     state: directory
-    
-    # - name: clone repo git
-    #   git:
-    #     repo: https://github.com/Marwacoding/acible-test.git
-    #     dest: ./project-app
+    - name: set postgres password
+      become: yes
+      become_method: sudo
+      become_user: postgres
+      postgresql_user:
+        name: "postgres"
+        password: "123"
+        db: postgres
 
-    # - name: added .env
-    #   copy:
-    #     src: "{{ playbook_dir }}/.env"
-    #     dest: ./project-app
+    - name: create directory
+      file:
+        path: ./project-app
+        state: directory
+    
+    - name: clone repo git
+      git:
+        repo: https://github.com/Marwacoding/acible-test.git
+        dest: ./project-app
+
+    - name: added .env
+      copy:
+        src: "/Users/marwamajbri/Desktop/simplon/ancible-test-flask/.env"
+        dest: ./project-app
 
     - name : install python package flask
       pip:
@@ -51,7 +60,7 @@
       command: python ./project-app/flask_api.py
         #executable: python
 
-    # - name: Run my postgres script
-    #   script: /Users/marwamajbri/Desktop/simplon/ancible-test-flask/flask_api.py
-    #   args:
-    #     executable: python
+    - name: Run my postgres script
+      script: /Users/marwamajbri/Desktop/simplon/ancible-test-flask/flask_api.py
+      args:
+        executable: python
